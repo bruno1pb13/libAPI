@@ -1,13 +1,9 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+let server = require('./server/index')
 
-const app = express()
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
 
-require('./controllers/authController')(app)
-
-app.listen(3000, ()=>{
-    console.log("Server running")
-})
+try{
+    server().start()
+}catch(err){
+    throw new Error(err)
+}
