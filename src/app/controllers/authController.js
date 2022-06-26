@@ -17,6 +17,7 @@ function generateToken(params = {}){
 router.post('/register', async(req,res) => {
     
     
+
     try{
         const {email} = req.body
         if(await User.findOne({email})){
@@ -38,6 +39,8 @@ router.post('/authenticate', async (req,res) => {
     const {email, password} = req.body;
     
     const user = await User.findOne({email}).select('+password');
+
+    console.log(email, password)
 
     if(!user){
         return res.status(404).send({Error: '[Authenticate] : User not found'})
@@ -87,7 +90,7 @@ router.post('/forgot_password', async (req,res) => {
                 return res.status(400).send({Error : 'Cannot send email'})
             }
 
-            res.send(200)
+            res.status(200).send({nextStep: 'We send an email with instructions to reset your password'})
         })
 
     }catch(err){
@@ -119,6 +122,7 @@ router.post('/reset_password', async (req,res)=>{
         }
 
         user.password = password;
+        user.passwordResetExpires = new Date("01/01/1970")
 
         await user.save();
 
