@@ -6,4 +6,6 @@ interaja com outras pessoas
 
 vejá o modelo em 
 
-> [Free Library](https://github.com/bruno1pb13/freeLibrary)
+Acesse a documentação em:
+
+https://documenter.getpostman.com/view/4255748/UzBsHPx3
